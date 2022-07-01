@@ -15,7 +15,7 @@ The following are some of the features provided by this project:
 # Application Screenshots
 
 ### User Interface
-<img src="readme-images/user%20interface.png" width="250">
+<img src="readme-images/user%20interface.png" width="600">
 
 ![User interface image](https://github.com/Danish-uddin/Encrypt-and-Decrypt/tree/main/readme-images/user%20interface.png?raw=true)
 
