@@ -17,12 +17,8 @@ The following are some of the features provided by this project:
 ### User Interface
 <img src="readme-images/user%20interface.png" width="600">
 
-![User interface image](https://github.com/Danish-uddin/Encrypt-and-Decrypt/tree/main/readme-images/user%20interface.png?raw=true)
-
 ### Encryption
-
-![Encryption image](https://github.com/Danish-uddin/Encrypt-and-Decrypt/tree/main/readme-images/encrypt.png?raw=true)
+<img src="readme-images/encrypt.png" width="600">
 
 ### Decryption
-
-![Decryption image](https://github.com/Danish-uddin/Encrypt-and-Decrypt/tree/main/readme-images/decrypt.png?raw=true)
+<img src="readme-images/decrypt.png" width="600">
