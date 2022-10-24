@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <title>Hello, world!</title>
+
+    <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
+    <script defer src="https://pyscript.net/latest/pyscript.js"></script>
+
+  </head>
+  <body>
+
+    <div class="bg-light text-dark">
+
+        <div class="container-fluid d-flex justify-content-center align-items-center vh-100">
+          
+            <div class="container-fluid border bg-white text-dark shadow p-0 bg-white rounded">
+            
+                <div class="modal-body row ">
+                  <div class="col-md-6" style="text-align: center">
+                              
+                    
+
+                    <h1 style="text-align: right"><span><img src="lock.png" alt="Trulli" width="45" height="45"></span> Encryption</h1>
+
+                    <div class="p-0 m-0" style="text-align: right">
+
+                      <label for="MESSAGE">MESSAGE TO ENCRYPT</label>
+                      <input id="INP_MESSAGE" name="INP_MESSAGE"><br>
+                      
+                      <label for="KEY">KEY (Only Integer)</label>
+                      <input id="INP_KEY" name="INP_KEY"><br>
+
+                      <label for="MODE">MODE (e for encrypt, d for decrypt)</label>
+                      <input id="INP_MODE" name="INP_MODE" placeholder="Enter e"><br>
+
+                      <label for="RESULT" style="color:red;">ENCRYPTED CODE</label>
+                      <input id="INP_RESULT" name="INP_RESULT" placeholder="Encrypted Result" disabled><br>
+
+                    </div>
+                    
+                  </div>
+
+                  <div class="col-md-6 align-items-center ">
+                    <h1 style="text-align: left">Decryption</h1>
+                    <div class="p-0 m-0" style="text-align: left">
+
+                      <input id="INP_MESSAGE2" name="INP_MESSAGE">
+                      <label for="MESSAGE">ENCRYPTED CODE</label>
+                      <br>
+                      
+                      <input id="INP_KEY2" name="INP_KEY">
+                      <label for="KEY">USED KEY</label>
+                      <br>
+
+                      <input id="INP_MODE2" name="INP_MODE" placeholder="Enter d">
+                      <label for="MODE">MODE (e for encrypt, d for decrypt)</label>
+                      <br>
+
+                      <input id="INP_RESULT2" name="INP_RESULT" placeholder="Message" disabled>
+                      <label for="RESULT" style="color:red;">DECRYPTED MESSAGE</label>
+                      <br>
+
+                    </div>
+                                      
+                  </div>
+                </div>
+
+                <div class = "d-flex justify-content-sm-center ">
+                  <button id="BUTT_SHOWMSSG" class="btn btn-primary m-2">Encrypt/Decrypt</button>
+                  <a href="about.html" class="btn btn-primary m-2" role="button">About Developer</a>
+                </div>
+                      
+                <!-- 
+                <h1 id="myHeader">My Header</h1>
+                <button id="mybutton">Click me</button>
+                <input type="text" id="myinput"><br>
+                <input type="text" id="myinput2"><br>
+                <input type="text" id="myinput3"><br>
+                -->
+
+            </div>
+        
+        </div>
+    </div>
+
+    <py-script>
+      #print("hello")
+      
+      from pyodide import create_proxy
+      from js import document
+      #print("dsfdf")
+      
+      import random
+      import base64
+    
+      # Function to encode
+      #Msg------INP_MESSAGE
+      #key------INP_KEY
+      #mode-----INP_MODE
+      #Result---INP_RESULT
+
+      Msg = document.getElementById("INP_MESSAGE").value
+      key = document.getElementById("INP_KEY").value
+      mode = document.getElementById("INP_MODE").value
+      Result = document.getElementById("INP_RESULT").value
+
+      def Results(event): #SHOW MSSG BUTTON
+        # print("Message= ", (Msg.get()))
+
+        #myinput = document.getElementById("myinput2")
+        #myinput.value = "entered result function"
+        
+        m = document.getElementById("INP_MODE").value
+
+        if (m == 'e'):
+          myinput = document.getElementById("INP_MODE")
+          myinput.value = ''
+          
+          msg = document.getElementById("INP_MESSAGE").value
+          k = document.getElementById("INP_KEY").value
+          Result = encode(k, msg)
+          result1 = document.getElementById("INP_RESULT")
+          result1.value = Result
+
+          msg1 = document.getElementById("INP_MESSAGE")
+          msg1.value=''
+
+          k1 = document.getElementById("INP_KEY")
+          k1.value=''
+        else:
+          myinput = document.getElementById("INP_MODE2")
+          myinput.value = ''
+
+          msg = document.getElementById("INP_MESSAGE2").value
+          k = document.getElementById("INP_KEY2").value
+          Result = decode(k, msg)
+          result1 = document.getElementById("INP_RESULT2")
+          result1.value = Result
+
+          msg1 = document.getElementById("INP_MESSAGE2")
+          msg1.value=''
+
+          k1 = document.getElementById("INP_KEY2")
+          k1.value=''
+        
+      button1=document.getElementById("BUTT_SHOWMSSG")
+      button1.addEventListener("click", create_proxy(Results))
+
+      def encode(key, msg):
+        #myinput = document.getElementById("myinput3")
+        #myinput.value = "etnered encodeee funt"
+
+        enc = []
+        for i in range(len(msg)):
+          key_c = key[i % len(key)]
+          enc_c = chr((ord(msg[i]) + ord(key_c)) % 256)
+          enc.append(enc_c)
+          print("enc:", enc)
+        return base64.urlsafe_b64encode("".join(enc).encode()).decode()
+
+
+      def decode(key, enc):
+        dec = []
+
+        enc = base64.urlsafe_b64decode(enc).decode()
+        for i in range(len(enc)):
+          key_c = key[i % len(key)]
+          dec_c = chr((256 + ord(enc[i]) - ord(key_c)) % 256)
+          dec.append(dec_c)
+          print("dec:", dec)
+        return "".join(dec)
+
+      
+    </py-script>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+</html>
