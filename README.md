@@ -1,4 +1,6 @@
-# Encrypt-and-Decrypt
+# <span><img src="readme-images/books_icon.png" width="40"></span> Encrypt-and-Decrypt
+
+<h2><span><img src="readme-images/arrow_icon1.png" width="40"></span> Live Demo: https://danish-uddin.github.io/Encrypt-and-Decrypt/ </h2>
 
 Encryption is the process by which a readable message is converted to an unreadable form to prevent unauthorized parties from reading it.
 Decryption is the process of converting an encrypted message back to its original (readable) format.
