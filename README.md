@@ -1,4 +1,4 @@
-# <span><img src="readme-images/books_icon.png" width="40"></span> Encrypt-and-Decrypt
+# <span><img src="readme-images/lock.png" width="40"></span> Encrypt-and-Decrypt
 
 <h2><span><img src="readme-images/arrow_icon1.png" width="40"></span> Live Demo: https://danish-uddin.github.io/Encrypt-and-Decrypt/ </h2>
 
@@ -17,10 +17,12 @@ The following are some of the features provided by this project:
 # Application Screenshots
 
 ### User Interface
-<img src="readme-images/user%20interface.png" width="600">
+<img src="readme-images/user_interface.png" width="600">
 
 ### Encryption
-<img src="readme-images/encrypt.png" width="600">
+<img src="readme-images/encrypt1.png" width="600">
+<img src="readme-images/encrypt2.png" width="600">
 
 ### Decryption
-<img src="readme-images/decrypt.png" width="600">
+<img src="readme-images/decrypt1.png" width="600">
+<img src="readme-images/decrypt2.png" width="600">
